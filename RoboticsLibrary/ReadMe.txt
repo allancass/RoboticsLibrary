@@ -2,34 +2,32 @@
     CONSOLE APPLICATION : RoboticsLibrary Project Overview
 ========================================================================
 
-AppWizard has created this RoboticsLibrary application for you.
-
-This file contains a summary of what you will find in each of the files that
-make up your RoboticsLibrary application.
-
-
-RoboticsLibrary.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
-
-RoboticsLibrary.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
 
 RoboticsLibrary.cpp
-    This is the main application source file.
+    File for testing and showing how classes operate.  Also serves as an examples program.
+
+
 
 /////////////////////////////////////////////////////////////////////////////
-Other standard files:
+Logic.cpp, Logic.h
 
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named RoboticsLibrary.pch and a precompiled types file named StdAfx.obj.
+Library of Functions
+
+Pulse (One Shot)
+Use to detect rising or falling edges of a boolean signal.  Use when you only want an event to happen once per trigger, but the trigger remains true for more than one itteration, such as a button press.
+
+Toggle
+Used to toggle a signal based on rising or falling edge of another boolean.  Use to maintain something as true/fall on a button press.
+
+Schmidt
+Implements a schmidt trigger on an analog signal.
+
+DeadZone (overloaded)
+
+Sample and Hold
+
+De-bounce or Delay
+
 
 /////////////////////////////////////////////////////////////////////////////
 Other notes:

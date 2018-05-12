@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RoboticsLibrary", "RoboticsLibrary\RoboticsLibrary.vcxproj", "{56046A44-CB9D-408B-BEC3-C36FB4A3260C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample-Test1", "Sample-Test1\Sample-Test1.vcxproj", "{543EA983-CAB5-4596-AA64-74ECBD7BE945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,19 @@ Global
 		{56046A44-CB9D-408B-BEC3-C36FB4A3260C}.Release|x64.Build.0 = Release|x64
 		{56046A44-CB9D-408B-BEC3-C36FB4A3260C}.Release|x86.ActiveCfg = Release|Win32
 		{56046A44-CB9D-408B-BEC3-C36FB4A3260C}.Release|x86.Build.0 = Release|Win32
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Debug|x64.ActiveCfg = Debug|x64
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Debug|x64.Build.0 = Debug|x64
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Debug|x86.ActiveCfg = Debug|Win32
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Debug|x86.Build.0 = Debug|Win32
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Release|x64.ActiveCfg = Release|x64
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Release|x64.Build.0 = Release|x64
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Release|x86.ActiveCfg = Release|Win32
+		{543EA983-CAB5-4596-AA64-74ECBD7BE945}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {927003A2-FFEF-41EF-8D05-E606457AFA1D}
 	EndGlobalSection
 EndGlobal

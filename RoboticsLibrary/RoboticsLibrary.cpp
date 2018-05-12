@@ -17,7 +17,8 @@ int main()
 {
 	//TestPulse(true);
 	//BatchTestLatch();
-	TestSchmidt();
+	//TestSchmidt();
+	
     return 0;
 }
 
@@ -86,3 +87,4 @@ void TestSchmidt(void)
 	}
 	std::cin.ignore();
 }
+

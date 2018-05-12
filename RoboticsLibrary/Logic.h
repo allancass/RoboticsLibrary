@@ -39,4 +39,48 @@ namespace RoboticsLibrary
 		double Low;
 		bool State;
 	};
+
+	template <typename T>
+	T DeadZone(T Upper, T Lower, T Sample)
+	{
+		if (Sample > Upper) { return Upper; }
+		else if (Sample < Lower) { return Lower; }
+		else {
+			return Sample;
+		}
+	}
+
+	template <typename T>
+	T DeadZone(T Upper, T Lower, T Sample, bool &InRange)
+	{
+		InRange = false;
+		if (Sample > Upper) { return Upper; }
+		else if (Sample < Lower) { return Lower; }
+		else {
+			InRange = true;
+			return Sample;
+		}
+	}
+
+	template <typename T>
+	class SampleAndHold
+	{
+	public:
+		SampleAndHold(T DefaultValue) : Sample(DefaultValue) {};
+		~SampleAndHold() {};
+		
+		T SampleAndHold::Set(T Value, bool Hold)
+		{
+			if (Hold) { Sample = Value; }
+			return Sample;
+		}
+
+		T SampleAndHold::Get()
+		{
+			return Sample;
+		}
+	private:
+		T Sample;
+	};
 }
+

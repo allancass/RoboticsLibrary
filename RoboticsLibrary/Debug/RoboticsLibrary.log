@@ -1,4 +1,4 @@
-﻿  RoboticsLibrary.cpp
-c:\users\allan\documents\visual studio 2015\projects\roboticslibrary\roboticslibrary\roboticslibrary.cpp(47): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-  RoboticsLibrary.vcxproj -> C:\Users\Allan\documents\visual studio 2015\Projects\RoboticsLibrary\Debug\RoboticsLibrary.exe
-  RoboticsLibrary.vcxproj -> C:\Users\Allan\documents\visual studio 2015\Projects\RoboticsLibrary\Debug\RoboticsLibrary.pdb (Full PDB)
+﻿  Logic.cpp
+  RoboticsLibrary.cpp
+  Generating Code...
+  RoboticsLibrary.vcxproj -> C:\Users\Allan\Documents\GitHub\RoboticsLibrary\Debug\RoboticsLibrary.exe

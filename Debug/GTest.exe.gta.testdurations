@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GtaTestDurations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Executable>C:\Users\Allan\Documents\GitHub\RoboticsLibrary\Debug\GTest.exe</Executable>
+  <TestDurations>
+    <TestDuration Test="DeadZone.Upper" Duration="1" />
+    <TestDuration Test="DeadZone.Lower" Duration="1" />
+    <TestDuration Test="DeadZone.Mid" Duration="1" />
+    <TestDuration Test="DeadZoneTF.Upper" Duration="1" />
+    <TestDuration Test="DeadZoneTF.Lower" Duration="1" />
+    <TestDuration Test="DeadZoneTF.Mid" Duration="1" />
+    <TestDuration Test="SampleHold.EmptyConstructor" Duration="1" />
+  </TestDurations>
+</GtaTestDurations>
