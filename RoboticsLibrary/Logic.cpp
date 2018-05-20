@@ -91,6 +91,51 @@ namespace RoboticsLibrary
 	{
 		return State;
 	}
-	
 
+	Timer::Timer(float Timeout)
+	{
+		Duration = Timeout;
+		Status = Idle;
+		StartTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
+		TimeNow = StartTime;
+	}
+
+	Timer::~Timer(void)
+	{
+
+	}
+
+	void Timer::Start(void)
+	{
+		Status = Active;
+		StartTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
+	}
+
+	void Timer::Stop(void)
+	{
+		Status = Idle;
+	}
+
+	void Timer::Reset(void)
+	{
+		Status = Active;
+		StartTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
+	}
+
+	bool Timer::IsExpired(void)
+	{
+		return((Duration < TimeElapsed()) && (Status = Active));
+	}
+
+	bool Timer::IsActive(void)
+	{
+		return (Status == Active);
+	}
+	
+	float Timer::TimeElapsed(void)
+	{
+		if (Status == Idle) { return -1.0; }
+		TimeNow = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
+		return TimeNow.count()-StartTime.count();
+	}
 }

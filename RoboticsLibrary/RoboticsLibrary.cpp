@@ -1,11 +1,15 @@
 // RoboticsLibrary.cpp : Defines the entry point for the console application.
 //
+
+#include "Logic.h"
 #include <iostream>
 #include <iomanip>
-#include "Logic.h"
+#include <thread>
+#include <chrono>
 
 using std::cout;
 using std::endl;
+//using namespace std::chrono;
 
 void TestPulse(bool StartingSample);
 void BatchTestLatch(void);
@@ -19,6 +23,11 @@ int main()
 	//BatchTestLatch();
 	//TestSchmidt();
 	
+	//cout << std::setprecision(9) << fms.count() << " " << std::setprecision(9) << ums.count() << endl;
+		
+	cout.setf(std::ios::fixed);
+
+	std::cin.ignore();
     return 0;
 }
 

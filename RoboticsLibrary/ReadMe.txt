@@ -26,8 +26,9 @@ DeadZone (overloaded)
 
 Sample and Hold
 
-De-bounce or Delay
+De-bounce or Delay/Stable
 
+Timer
 
 /////////////////////////////////////////////////////////////////////////////
 Other notes:
