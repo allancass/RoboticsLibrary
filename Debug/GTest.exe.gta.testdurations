@@ -17,5 +17,20 @@
     <TestDuration Test="TimerTest.TimerStart" Duration="1200" />
     <TestDuration Test="TimerTest.TimerStop" Duration="1" />
     <TestDuration Test="TimerTest.TimerReset" Duration="2000" />
+    <TestDuration Test="StableTest.SolidSignalTFT" Duration="900" />
+    <TestDuration Test="StableTest.SolidSignalFTF" Duration="900" />
+    <TestDuration Test="StableTest.SolidSignalFFT" Duration="900" />
+    <TestDuration Test="StableTest.SolidSignalTTF" Duration="900" />
+    <TestDuration Test="StableTest.SignalFastSwitchF" Duration="100" />
+    <TestDuration Test="StableTest.SignalFastSwitchT" Duration="100" />
+    <TestDuration Test="StableTest.LooseSignalTFT" Duration="1700" />
+    <TestDuration Test="TimerTest.ZeroTime" Duration="1" />
+    <TestDuration Test="DebounceTest.SolidSignalTFT" Duration="800" />
+    <TestDuration Test="DebounceTest.SolidSignalFTF" Duration="800" />
+    <TestDuration Test="DebounceTest.SolidSignalFFT" Duration="900" />
+    <TestDuration Test="DebounceTest.SolidSignalTTF" Duration="900" />
+    <TestDuration Test="DebounceTest.SignalFastSwitchF" Duration="1" />
+    <TestDuration Test="DebounceTest.SignalFastSwitchT" Duration="1" />
+    <TestDuration Test="DebounceTest.LooseSignalTFT" Duration="1300" />
   </TestDurations>
 </GtaTestDurations>

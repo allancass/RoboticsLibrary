@@ -39,6 +39,16 @@ c:\users\allan\documents\github\roboticslibrary\packages\microsoft.googletest.v1
 c:\users\allan\documents\github\roboticslibrary\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(882): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\tuple(1163): note: see declaration of 'std::tr1'
 c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(40): warning C4003: not enough actual parameters for macro 'TEST'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(129): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(159): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(188): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(218): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(275): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(335): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(365): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(394): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(424): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\allan\documents\github\roboticslibrary\sample-test1\test.cpp(485): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\allan\documents\github\roboticslibrary\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(875): warning C4996: 'std::tr1': warning STL4002: The non-Standard std::tr1 namespace and TR1-only machinery are deprecated and will be REMOVED. You can define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that you have received this warning.
   c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\functional(2683): note: see declaration of 'std::tr1'
   c:\users\allan\documents\github\roboticslibrary\packages\microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\build\native\include\gtest\gtest-printers.h(961): note: see reference to class template instantiation 'testing::internal::TuplePolicy<Tuple>' being compiled

@@ -124,7 +124,7 @@ namespace RoboticsLibrary
 
 	bool Timer::IsExpired(void)
 	{
-		return((Duration < TimeElapsed()) && (Status = Active));
+		return((Duration <= TimeElapsed()) && (Status = Active));
 	}
 
 	bool Timer::IsActive(void)
@@ -138,4 +138,114 @@ namespace RoboticsLibrary
 		TimeNow = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
 		return TimeNow.count()-StartTime.count();
 	}
+
+	Stable::~Stable()
+	{
+		//No Deconstruction Required
+	}
+
+	bool Stable::Sample(bool NewSample)
+	{
+		Edge.Sample(NewSample);
+		if (State)
+		{
+			//If State is High and new sample is low, start the Low Timer, stop the High timer
+			if (Edge.IsFalling())
+			{
+				LowTimer.Reset();
+				HighTimer.Stop();
+			}
+			//If Low Timer is expired and the new sample is low, set new state to low
+			if ((!NewSample)&&LowTimer.IsExpired())
+			{
+				State = false;
+			}
+		}
+		else
+		{
+			//If State is Low and new sample is High, start the High Timer, stop the low timer
+			if (Edge.IsRising())
+			{
+				HighTimer.Reset();
+				LowTimer.Stop();
+			}
+			//If High Timer is expired and the new sample is High, set new state to High
+			if (NewSample && HighTimer.IsExpired())
+			{
+				State = true;
+			}
+		}
+		return(State);
+	}
+
+	bool Stable::GetState()
+	{
+		if (State)
+		{
+			//If Low Timer is expired set new state to low
+			if (LowTimer.IsExpired())
+			{
+				State = false;
+			}
+		}
+		else
+		{
+			//If High Timer is expired set new state to High
+			if (HighTimer.IsExpired())
+			{
+				State = true;
+			}
+		}
+		return(State);
+	}
+
+	Debounce::~Debounce()
+	{
+		//No Deconstruction Required
+	}
+
+	bool Debounce::Sample(bool NewSample)
+	{
+		if (State)
+		{
+			if (HighTimer.IsExpired() && (!NewSample))
+			{
+				State = false;
+				LowTimer.Reset();
+			}
+		}
+		else
+		{
+			if (LowTimer.IsExpired() && NewSample)
+			{
+				State = true;
+				HighTimer.Reset();
+			}
+		}
+		LastSample = NewSample;
+		return(State);
+	}
+
+	bool Debounce::GetState()
+	{
+		if (State)
+		{
+			if (HighTimer.IsExpired() && (!LastSample))
+			{
+				State = false;
+				LowTimer.Reset();
+			}
+		}
+		else
+		{
+			if (LowTimer.IsExpired() && (LastSample))
+			{
+				State = true;
+				HighTimer.Reset();
+			}
+		}
+		return(State);
+	}
+
+
 }

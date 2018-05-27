@@ -113,3 +113,406 @@ using namespace RoboticsLibrary;
 		std::this_thread::sleep_for(std::chrono::milliseconds(400));
 		EXPECT_EQ(TimA.IsExpired(), true);
 	}
+	TEST(TimerTest, ZeroTime)
+	{
+		Timer TimB(0.0);
+		TimB.Start();
+		EXPECT_EQ(TimA.IsExpired(), true);
+		TimB.Reset();
+		EXPECT_EQ(TimA.IsExpired(), true);
+	}
+
+	TEST(StableTest, SolidSignalTFT)
+	{
+		bool StateA = true;
+		bool StateB = false;
+		Stable StableDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+	}
+	TEST(StableTest, SolidSignalFTF)
+	{
+
+		bool StateA = false;
+		bool StateB = true;
+		Stable StableDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+	}
+	TEST(StableTest, SolidSignalFFT)
+	{
+		bool StateA = true;
+		bool StateB = false;
+		Stable StableDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+	}
+	TEST(StableTest, SolidSignalTTF)
+	{
+
+		bool StateA = false;
+		bool StateB = true;
+		Stable StableDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+	}
+	TEST(StableTest, SignalFastSwitchF)
+	{
+
+		bool StateA = true;
+		bool StateB = false;
+		Stable StableDemo(StateA, 0.0, 0.0);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+	}
+	TEST(StableTest, SignalFastSwitchT)
+	{
+
+		bool StateA = false;
+		bool StateB = true;
+		Stable StableDemo(StateA, 0.0, 0.0);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+	}
+	TEST(StableTest, LooseSignalTFT)
+	{
+		bool StateA = true;
+		bool StateB = false;
+		Stable StableDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateB), StateB);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(StableDemo.GetState(), StateB);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+		EXPECT_EQ(StableDemo.Sample(StateA), StateA);
+		EXPECT_EQ(StableDemo.GetState(), StateA);
+	}
+
+	TEST(DebounceTest, SolidSignalTFT)
+	{
+		bool StateA = true;
+		bool StateB = false;
+		Debounce DebounceDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);	
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+	}
+	TEST(DebounceTest, SolidSignalFTF)
+	{
+
+		bool StateA = false;
+		bool StateB = true;
+		Debounce DebounceDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+	}
+	TEST(DebounceTest, SolidSignalTTF)
+	{
+		bool StateA = true;
+		bool StateB = false;
+		Debounce DebounceDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+	}
+	TEST(DebounceTest, SolidSignalFFT)
+	{
+
+		bool StateA = false;
+		bool StateB = true;
+		Debounce DebounceDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+	}
+	TEST(DebounceTest, SignalFastSwitchF)
+	{
+
+		bool StateA = true;
+		bool StateB = false;
+		Debounce DebounceDemo(StateA, 0.0, 0.0);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+	}
+	TEST(DebounceTest, SignalFastSwitchT)
+	{
+
+		bool StateA = false;
+		bool StateB = true;
+		Debounce DebounceDemo(StateA, 0.0, 0.0);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+	}
+	TEST(DebounceTest, LooseSignalTFT)
+	{
+		bool StateA = true;
+		bool StateB = false;
+		Debounce DebounceDemo(StateA, 0.3, 0.3);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(400));
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		std::this_thread::sleep_for(std::chrono::milliseconds(150));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateA), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		EXPECT_EQ(DebounceDemo.GetState(), StateA);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateA);
+		std::this_thread::sleep_for(std::chrono::milliseconds(250));
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+		EXPECT_EQ(DebounceDemo.Sample(StateB), StateB);
+		EXPECT_EQ(DebounceDemo.GetState(), StateB);
+	}

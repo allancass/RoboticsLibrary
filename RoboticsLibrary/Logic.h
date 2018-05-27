@@ -114,14 +114,46 @@ namespace RoboticsLibrary
 		std::chrono::duration<float> TimeNow;
 	};
 
+	/*The intent of Stable is to ensure you have a solid/stable signal prior to changing states.  The output will not change until it has been T/F consistently  while
+	the corresponding time has elapsed.  Any intermittent change to the other state will reset the timer.
+	*/
 	class Stable {
 	public:
-		Stable(bool StartingValue, float SecondsHigh, float SecondsLow);
+		Stable(bool StartingValue, float SecondsHigh, float SecondsLow) : State(StartingValue), Edge(StartingValue), HighTimer(SecondsHigh), LowTimer(SecondsLow) {};
 		~Stable();
-		void Sample(bool NewSample);
+		bool Sample(bool NewSample);
 		bool GetState();
 	private:
+		Timer HighTimer;
+		Timer LowTimer;
 		bool State;
+		Pulse Edge;
+	};
+
+	/*The intent of Debounce is to ensure that when a signal switches, any temporary chatter will be eliminated.  This is similar to Stable but
+	instead of waiting until the signal is solid before switching, it will switch immediately.  It will not switch back until the corresponding timer
+	has elapsed AND a sample (after the timer expires) is the opposite.  Timers only reset when the output changes.*/
+	class Debounce {
+	public:
+		Debounce(bool StartingValue, float SecondsHigh, float SecondsLow) : State(StartingValue), LastSample(StartingValue), HighTimer(SecondsHigh), LowTimer(SecondsLow)
+		{
+			if (StartingValue)
+			{
+				HighTimer.Reset();
+			}
+			else
+			{
+				LowTimer.Reset();
+			}
+		};
+		~Debounce();
+		bool Sample(bool NewSample);
+		bool GetState();
+	private:
+		Timer HighTimer;
+		Timer LowTimer;
+		bool State;
+		bool LastSample;
 	};
 }
 
