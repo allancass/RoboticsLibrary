@@ -19,13 +19,15 @@ void TestSchmidt(void);
 
 int main()
 {
-	//TestPulse(true);
-	//BatchTestLatch();
-	//TestSchmidt();
-	
-	//cout << std::setprecision(9) << fms.count() << " " << std::setprecision(9) << ums.count() << endl;
-		
-	cout.setf(std::ios::fixed);
+	//cout.setf(std::ios::fixed);
+	//cout << std::setprecision(9) << StartOfPeriod.count() << " " << std::setprecision(9) << (StartOfPeriod + std::chrono::microseconds(123)).count() << endl;
+
+
+
+
+
+
+
 
 	std::cin.ignore();
     return 0;

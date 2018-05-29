@@ -1,4 +1,6 @@
 ﻿  Logic.cpp
+c:\users\allan\documents\github\roboticslibrary\roboticslibrary\logic.cpp(340): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\allan\documents\github\roboticslibrary\roboticslibrary\logic.cpp(425): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   RoboticsLibrary.cpp
   Generating Code...
   RoboticsLibrary.vcxproj -> C:\Users\Allan\Documents\GitHub\RoboticsLibrary\Debug\RoboticsLibrary.exe

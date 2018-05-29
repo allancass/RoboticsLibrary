@@ -14,10 +14,10 @@
     <TestDuration Test="SampleHold.MonoTest" Duration="1" />
     <TestDuration Test="TimerTest.MonoTest" Duration="1" />
     <TestDuration Test="TimerTest.TimerInit" Duration="1" />
-    <TestDuration Test="TimerTest.TimerStart" Duration="1200" />
+    <TestDuration Test="TimerTest.TimerStart" Duration="1201" />
     <TestDuration Test="TimerTest.TimerStop" Duration="1" />
     <TestDuration Test="TimerTest.TimerReset" Duration="2000" />
-    <TestDuration Test="StableTest.SolidSignalTFT" Duration="900" />
+    <TestDuration Test="StableTest.SolidSignalTFT" Duration="903" />
     <TestDuration Test="StableTest.SolidSignalFTF" Duration="900" />
     <TestDuration Test="StableTest.SolidSignalFFT" Duration="900" />
     <TestDuration Test="StableTest.SolidSignalTTF" Duration="900" />
@@ -32,5 +32,23 @@
     <TestDuration Test="DebounceTest.SignalFastSwitchF" Duration="1" />
     <TestDuration Test="DebounceTest.SignalFastSwitchT" Duration="1" />
     <TestDuration Test="DebounceTest.LooseSignalTFT" Duration="1300" />
+    <TestDuration Test="BoolConfirmCheck.CheckPendingFirstPress" Duration="240" />
+    <TestDuration Test="BoolConfirmCheck.CheckPendingSecondPress" Duration="1290" />
+    <TestDuration Test="BumpCount.CountTest" Duration="1" />
+    <TestDuration Test="HLTDP." Duration="1" />
+    <TestDuration Test="HLTDP.HighPositiveLowPositive" Duration="1" />
+    <TestDuration Test="HLTDP.HighZeroLowPositive" Duration="1" />
+    <TestDuration Test="HLTDP.HighNegativeLowPositive" Duration="1" />
+    <TestDuration Test="HLTDP.HighPositiveLowZero" Duration="1" />
+    <TestDuration Test="HLTDP.HighZeroLowZero" Duration="1" />
+    <TestDuration Test="HLTDP.HighNegativeLowZero" Duration="1" />
+    <TestDuration Test="HLTDP.HighPositiveLowNegative" Duration="1" />
+    <TestDuration Test="HLTDP.HighZeroLowNegative" Duration="1" />
+    <TestDuration Test="HLTDP.HighNegativeLowNegative" Duration="1" />
+    <TestDuration Test="UpDownCounter." Duration="1" />
+    <TestDuration Test="MinMax." Duration="1" />
+    <TestDuration Test="PulseStretchDelay." Duration="860" />
+    <TestDuration Test="InTollerance." Duration="1" />
+    <TestDuration Test="InTolleranceTF." Duration="1" />
   </TestDurations>
 </GtaTestDurations>
